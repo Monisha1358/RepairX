@@ -1,0 +1,979 @@
+/* =========================================================
+   REPAIRX DASHBOARD
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #f5f7fa;
+  color: #182230;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f7fa;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+  width: 245px;
+  min-height: 100vh;
+  background: #17202d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 16px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 10px 35px;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: white;
+  color: #17202d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.4px;
+}
+
+.brand span {
+  display: block;
+  margin-top: 3px;
+  color: #8d9aac;
+  font-size: 11px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #9da9b8;
+  padding: 11px 13px;
+  border-radius: 7px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  transition: 0.2s ease;
+}
+
+.nav-item:hover {
+  background: #202b3a;
+  color: white;
+}
+
+.nav-item.active {
+  background: #2a3748;
+  color: white;
+}
+
+.nav-icon {
+  width: 18px;
+  text-align: center;
+  color: #91a2b7;
+}
+
+.nav-item.active .nav-icon {
+  color: #8fb5ff;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+.sidebar-bottom > .nav-item {
+  margin-bottom: 18px;
+}
+
+.profile {
+  border-top: 1px solid #2a3543;
+  padding: 18px 8px 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #314158;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.profile strong {
+  display: block;
+  font-size: 13px;
+}
+
+.profile span {
+  display: block;
+  color: #8290a2;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main {
+  margin-left: 245px;
+  width: calc(100% - 245px);
+  min-height: 100vh;
+  padding: 34px 42px 60px;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 27px;
+}
+
+.breadcrumb {
+  color: #8290a2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -1px;
+  color: #17202d;
+}
+
+.topbar p {
+  margin: 7px 0 0;
+  color: #778497;
+  font-size: 13px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #dce2e9;
+  background: white;
+  border-radius: 7px;
+  color: #647287;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.icon-button:hover {
+  background: #f0f3f7;
+}
+
+.user-mini {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #29394e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   BACKEND STATUS
+   ========================================================= */
+
+.backend-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: white;
+  border: 1px solid #e0e5eb;
+  border-radius: 7px;
+  padding: 9px 13px;
+  margin-bottom: 18px;
+  font-size: 12px;
+}
+
+.backend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.backend-dot.online {
+  background: #24a56a;
+  box-shadow: 0 0 0 3px #e5f6ee;
+}
+
+.backend-dot.offline {
+  background: #d84c4c;
+  box-shadow: 0 0 0 3px #fbe8e8;
+}
+
+.backend-status strong {
+  color: #253246;
+}
+
+.api-version {
+  color: #8793a3;
+  border-left: 1px solid #dce2e9;
+  padding-left: 9px;
+}
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 13px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e1e6ec;
+  border-radius: 8px;
+  padding: 17px 18px;
+  min-height: 108px;
+}
+
+.stat-card > span {
+  display: block;
+  color: #8792a1;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.stat-card strong {
+  display: block;
+  color: #1b2635;
+  font-size: 27px;
+  margin-top: 11px;
+  letter-spacing: -1px;
+}
+
+.stat-card strong.danger {
+  color: #c74c4c;
+}
+
+.stat-card strong.success {
+  color: #299568;
+}
+
+.stat-card small {
+  display: block;
+  color: #9aa4b1;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(330px, 0.9fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e1e6ec;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 19px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #edf0f3;
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: #202b3b;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.panel-header p {
+  margin: 5px 0 0;
+  color: #8b96a5;
+  font-size: 11px;
+}
+
+.live {
+  color: #2d9369;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.live .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #35a976;
+}
+
+/* =========================================================
+   API TABLE
+   ========================================================= */
+
+.table {
+  width: 100%;
+}
+
+.table-head,
+.table-row {
+  display: grid;
+  grid-template-columns: 90px minmax(150px, 1fr) 80px 80px;
+  align-items: center;
+  padding: 13px 20px;
+}
+
+.table-head {
+  color: #99a2ae;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: #fafbfc;
+}
+
+.table-row {
+  border-top: 1px solid #edf0f3;
+  min-height: 49px;
+}
+
+.table-row:hover {
+  background: #fafbfd;
+}
+
+.method {
+  color: #4c78b7;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.table-row code {
+  color: #4c5666;
+  font-size: 11px;
+}
+
+.status {
+  color: #299568;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status.error {
+  color: #c84d4d;
+}
+
+.latency {
+  color: #7f8997;
+  font-size: 11px;
+}
+
+.error-row {
+  background: #fffafa;
+}
+
+/* =========================================================
+   AI ANALYSIS
+   ========================================================= */
+
+.analysis-panel {
+  min-height: 100%;
+}
+
+.ai-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #edf3ff;
+  color: #4b78c2;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+
+.error-box {
+  margin: 18px 20px;
+  padding: 13px;
+  background: #fff5f5;
+  border: 1px solid #f2dada;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.error-box > span {
+  font-size: 12px;
+  font-weight: 800;
+  color: #c74c4c;
+  background: white;
+  border: 1px solid #eccaca;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.error-box strong {
+  color: #343e4c;
+  font-size: 12px;
+}
+
+.error-box p {
+  margin: 3px 0 0;
+  color: #8c96a3;
+  font-size: 10px;
+}
+
+.analysis-item {
+  padding: 0 20px 16px;
+}
+
+.analysis-item label {
+  display: block;
+  color: #929ca9;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+}
+
+.analysis-item p {
+  color: #626d7b;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.analysis-item code {
+  color: #4c6078;
+  background: #f5f7fa;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.confidence {
+  padding: 0 20px 17px;
+}
+
+.confidence > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.confidence span {
+  color: #929ca9;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.confidence strong {
+  color: #299568;
+  font-size: 10px;
+}
+
+.progress {
+  height: 5px;
+  background: #e9edf1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress div {
+  width: 100%;
+  height: 100%;
+  background: #299568;
+}
+
+.repair-button {
+  width: calc(100% - 40px);
+  margin: 0 20px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #26374d;
+  color: white;
+  height: 39px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.repair-button:hover {
+  background: #1c2b3d;
+}
+
+/* =========================================================
+   REPAIR PIPELINE
+   ========================================================= */
+
+.pipeline {
+  margin-bottom: 18px;
+}
+
+.completed {
+  color: #299568;
+  background: #eaf7f0;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 23px 20px 24px;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: #edf2f8;
+  color: #4d6c91;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 9px;
+  font-weight: 800;
+  position: relative;
+  z-index: 2;
+}
+
+.step-line {
+  position: absolute;
+  height: 1px;
+  background: #dce3eb;
+  top: 15px;
+  left: 50%;
+  width: 100%;
+}
+
+.step:last-child .step-line {
+  display: none;
+}
+
+.step strong {
+  display: block;
+  color: #354254;
+  font-size: 11px;
+}
+
+.step span {
+  display: block;
+  color: #919ba8;
+  font-size: 9px;
+  margin-top: 4px;
+}
+
+/* =========================================================
+   GITHUB
+   ========================================================= */
+
+.github-card {
+  background: #1b2532;
+  border-radius: 9px;
+  padding: 20px 22px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.github-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.github-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: #2b394b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.github-title h2 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.github-title p {
+  margin: 3px 0 0;
+  color: #8997a8;
+  font-size: 10px;
+}
+
+.repo {
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: #c9d2dc;
+}
+
+.repo > span:first-child {
+  color: #8da4c0;
+}
+
+.connected {
+  color: #66c795;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  background: #243f35;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.outline-button {
+  background: transparent;
+  color: #c8d1db;
+  border: 1px solid #455364;
+  border-radius: 5px;
+  padding: 9px 13px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.outline-button:hover {
+  background: #263344;
+}
+
+/* =========================================================
+   OTHER PAGES
+   ========================================================= */
+
+.empty-page {
+  background: white;
+  border: 1px solid #e1e6ec;
+  border-radius: 9px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #edf2f8;
+  color: #5b7391;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.empty-page h2 {
+  margin: 0;
+  color: #263447;
+  font-size: 20px;
+}
+
+.empty-page p {
+  max-width: 420px;
+  color: #8a95a4;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 0;
+  }
+
+  .step-line {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .sidebar {
+    width: 190px;
+  }
+
+  .main {
+    margin-left: 190px;
+    width: calc(100% - 190px);
+    padding: 25px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .github-card {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .app {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .table-head,
+  .table-row {
+    grid-template-columns: 65px 1fr 55px;
+  }
+
+  .table-head span:last-child,
+  .table-row .latency {
+    display: none;
+  }
+}
+/* Fix RepairX brand visibility */
+.brand h2 {
+  color: #ffffff;
+}
+
+.brand span {
+  color: #9fb0c8;
+}
+
+.brand .logo {
+  background: #ffffff;
+  color: #162131;
+}
+/* ============================================================
+   PROJECT CARD FIX
+============================================================ */
+
+.project-list {
+  width: 100%;
+}
+
+.project-row {
+  width: 100%;
+  min-height: 100px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-sizing: border-box;
+  border-top: 1px solid #e5e9ef;
+}
+
+.project-row:first-child {
+  border-top: none;
+}
+
+.project-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  flex: 1;
+}
+
+.project-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  background: #eef3fb;
+  color: #243b5a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.project-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.project-details strong {
+  font-size: 17px;
+  font-weight: 700;
+  color: #172033;
+  line-height: 1.3;
+}
+
+.repository-url {
+  display: block;
+  max-width: 650px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #7c8ca5;
+  line-height: 1.4;
+}
+
+.project-status {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: #edf8f3;
+  color: #249568;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #29a66f;
+  display: inline-block;
+}
+
+@media (max-width: 800px) {
+
+  .project-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project-status {
+    margin-left: 66px;
+  }
+
+  .repository-url {
+    max-width: 100%;
+  }
+}
