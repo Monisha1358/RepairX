@@ -4,9 +4,11 @@ from pydantic import BaseModel
 from typing import Optional
 
 from backend.auth.database import Base, engine
+from backend.errors.models import ErrorEvent
 from backend.auth.routes import router as auth_router
 from backend.projects.routes import router as projects_router
 from backend.integrations.github_routes import router as github_router
+from backend.errors.routes import router as errors_router
 from backend.services.repair_orchestrator import RepairOrchestrator
 
 
@@ -35,7 +37,7 @@ Base.metadata.create_all(bind=engine)
 app.include_router(auth_router)
 app.include_router(projects_router)
 app.include_router(github_router)
-
+app.include_router(errors_router)
 
 # ============================================================
 # CORS
