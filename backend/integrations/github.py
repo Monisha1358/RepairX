@@ -15,7 +15,7 @@ GITHUB_TOKEN_URL = "https://github.com/login/oauth/access_token"
 GITHUB_API_URL = "https://api.github.com"
 
 GITHUB_CALLBACK_URL = (
-    "http://127.0.0.1:8000/api/v1/github/callback"
+    "https://repairx-78w9.onrender.com/api/v1/github/callback"
 )
 
 
